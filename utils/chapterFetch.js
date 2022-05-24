@@ -42,7 +42,7 @@ export const fetchChapters = async (user_id) => {
 
   try {
     // ! evaluate runs inside the browser, keep in mind to return the values to access them in node
-    const result = await page.evaluate(async () => {
+    const result = await page.evaluate(async (user_id) => {
       const chapterDivs = document.querySelectorAll(
         "[data-a-target^='video-tower-card-'] [data-test-selector='toggle-balloon-wrapper__mouse-enter-detector']"
       )
@@ -53,7 +53,7 @@ export const fetchChapters = async (user_id) => {
         elem.dispatchEvent(new MouseEvent("mouseover", { bubbles: true }))
 
         /** @type {ChaptersObject} */
-        const vod = { chapters: [] }
+        const vod = { channel: user_id, chapters: [] }
 
         const games = elem.parentNode.querySelectorAll(
           '[data-test-selector="balloon-inside-click-detector"] .preview-card-game-balloon__content .media-row > a'
@@ -94,8 +94,48 @@ export const fetchChapters = async (user_id) => {
         vods.push(vod)
       }
 
+      // get all the cards for each vod, that has title, chapters, and game if there are no chapters
+      const allInfoCards = document.querySelectorAll(
+        "[data-test-selector='content'] div.tw-tower div > article > div > div.Layout-sc-nxg1ff-0"
+      )
+
+      for (const card of allInfoCards) {
+        // skip this card if it has the "Chapter" element (multiple games)
+        if (!card.querySelector("[data-a-target='preview-card-game-link']"))
+          continue
+
+        /** @type {ChaptersObject} */
+        const vod = { channel: user_id, chapters: [] }
+
+        /** @type {string} */
+        const link = card.querySelector("a.tw-link").href
+        const v_id = link.substring(
+          link.lastIndexOf("/") + 1,
+          link.indexOf("?")
+        )
+        vod.video_id = v_id
+
+        /** @type {Element} */
+        const image = card.querySelector("img.tw-image")
+
+        const gameName = image.alt
+
+        /** @type {Chapter} */
+        const gameChapter = await window.getGameData(gameName).then((res) => {
+          return {
+            starts_at: "0h0m0s",
+            game: {
+              ...res,
+            },
+          }
+        })
+
+        vod.chapters.push(gameChapter)
+        vods.push(vod)
+      }
+
       return vods
-    })
+    }, user_id)
 
     return result
   } catch (error) {
