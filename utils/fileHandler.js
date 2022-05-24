@@ -35,7 +35,7 @@ export const checkFileExists = async (file) => {
     .catch(() => false)
 }
 
-const writeToJsonFile = async (content) => {
+export const writeToJsonFile = async (content) => {
   fs.writeFile("./out.json", content, (err) => {
     if (err) {
       console.error(err)
