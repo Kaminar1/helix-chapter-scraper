@@ -48,7 +48,13 @@ const getGameData = async (name) => {
         },
       })
       .then((response) => {
-        return response.data?.data?.[0]
+        const game = response.data?.data?.[0]
+        const { id: game_id, name, box_art_url } = game
+        return {
+          game_id,
+          name,
+          box_art_url,
+        }
       })
       .catch((error) => {
         throw error
