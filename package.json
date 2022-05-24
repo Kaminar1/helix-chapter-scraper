@@ -1,0 +1,26 @@
+{
+  "name": "helix-chapter-scraper",
+  "version": "1.0.0",
+  "description": "temporary solution for missing game objects for vods in the official helix API",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaminar1/helix-chapter-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaminar1/helix-chapter-scraper/issues"
+  },
+  "homepage": "https://github.com/Kaminar1/helix-chapter-scraper#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "mkdirp": "^1.0.4",
+    "puppeteer": "^14.1.1"
+  }
+}
