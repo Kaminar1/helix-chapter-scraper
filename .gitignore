@@ -105,3 +105,6 @@ dist
 
 # secrets
 settings/settings.js
+
+# output
+out.json
