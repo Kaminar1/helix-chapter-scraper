@@ -77,13 +77,10 @@ export const fetchChapters = async (user_id) => {
           const gameChapter = await window
             .getGameData(game_name)
             .then((gameObj) => {
-              //   console.log(gameObj);
               return {
                 starts_at: start_time,
                 game: {
-                  game_id: gameObj.id,
-                  name: game_name,
-                  box_art_url: gameObj.box_art_url,
+                  ...gameObj,
                 },
               }
             })
