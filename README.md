@@ -30,3 +30,22 @@ The script produces output as JSON in the following format:
 ```
 
 Suggestion for this missing feature: [Return Tags and Game ID in Get Videos in Helix](https://twitch.uservoice.com/forums/310213-developers/suggestions/38155990-return-tags-and-game-id-in-get-videos-in-helix)
+
+## Setup & run
+
+Install packages
+
+```
+npm install
+```
+
+Make a `settings.js` in `settings/` with following the example template [settings_example.js](settings/settings_example.js).
+If you don't have a client_id and client_secret, you can generate those from [dev.twitch.tv](https://dev.twitch.tv/).
+
+The main functionality is found in `chapterFetch.js`. A usage example is in [app.js](app.js), run with:
+
+```
+npm start
+```
+
+Running it will scrape the chapters and dump the result in `out.json`
