@@ -5,8 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "jsdoc2md": "jsdoc2md doc/objects.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,5 @@
     "axios": "^0.27.2",
     "mkdirp": "^1.0.4",
     "puppeteer": "^14.1.1"
-  },
-  "devDependencies": {
-    "jsdoc-to-markdown": "^7.1.1"
   }
 }
