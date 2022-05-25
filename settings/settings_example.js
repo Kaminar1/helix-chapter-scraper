@@ -6,7 +6,7 @@ const creds = {
 
 /** @type {Settings} */
 const settings = {
-  logFilePath: "../logs/logs.log",
+  logFilePath: "logs/logs.log",
   userIdToScrape: "560363490",
 }
 
