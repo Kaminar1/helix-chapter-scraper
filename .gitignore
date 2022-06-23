@@ -110,4 +110,4 @@ dist
 settings/settings.js
 
 # output
-out.json
+out*.json
